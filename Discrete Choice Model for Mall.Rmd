@@ -1,0 +1,32 @@
+---
+title: "Discrete Choice Model Analysis"
+---
+
+
+
+```{r}
+library(mlogit)
+Mall=read.csv("Mall_choice_data.csv",header=T)
+mall.long=mlogit.data(Mall, shape="long",choice="choice",alt.levels = c("1","2","3","4","0"))
+```
+```{r}
+Mall.m1=mlogit(choice~discount+targeting+distance|income+gender,mall.long,reflevel = "0")
+summary(Mall.m1)
+```
+Statistically Significant: B3, B4j and B52 and B53 are significant.
+[Distance, choice 1&income, choice 2&income, choice 3&income, choice 4&income, choice 1&gender, choice 3 & gender]
+
+	When the distance to the mall increases, the less likely the customer is to go to the mall (because their utility from going to the mall decreases)
+
+	Higher the income of the customer, more likely it is for the customer to go to mall 1 (because their utility here from going to the mall is more than the utility from NOT going to a mall)
+
+	Higher the income of the customer, more likely it is for the customer to go to mall 2 (because their utility here from going to the mall is more than the utility from NOT going to a mall)
+
+	Higher the income of the customer, more likely it is for the customer to go to mall 3 (because their utility here from going to the mall is more than the utility from NOT going to a mall)
+
+	 Higher the income of the customer, more likely it is for the customer to go to mall 4 (because their utility here from going to the mall is more than the utility from NOT going to a mall)
+
+	When the customer is male, he is less likely to go to mall 1 (because their utility here from going to the mall is less than the utility from NOT going to a mall)
+
+	When the customer is male, he is less likely to go to mall 3 (because their utility here from going to the mall is less than the utility from NOT going to a mall)
+
